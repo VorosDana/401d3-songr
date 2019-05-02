@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${song.title}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header>
+    <h1 th:text="${song.title}"/>
+</header>
+<main>
+    <!--    <section>-->
+
+    <!--        <img th:href="${album.imageURL}"/>-->
+
+    <!--        <ul>-->
+    <!--            <li th:text="'Artist: ' + ${album.artist}"/>-->
+    <!--            <li th:text="'Number of tracks: ' + ${album.songCount}"/>-->
+    <!--            <li th:text="'Length: ' + ${album.length / 60} + 'm' + ${album.length % 60} + 's'"/>-->
+    <!--        </ul>-->
+    <!--    </section>-->
+
+    <form th:action="'/albums/' + ${album.id} + '/song/' + ${song.id} + '/update'" method="post">
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Track Number</th>
+                <th>Length</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text" th:value="${song.title}" name="title"/></td>
+                <td><input type="text" th:value="${song.artist}" name="artist"/></td>
+                <td><input type="number" th:value="${song.trackNumber}" name="trackNumber"/></td>
+                <td><input type="number" th:value="${song.length}" name="length"/></td>
+                <td>
+                    <button type="submit">Update</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</main>
+<footer>
+
+</footer>
+</body>
+</html>

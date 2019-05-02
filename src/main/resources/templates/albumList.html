@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Albums</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header>
+    <h1>Albums</h1>
+</header>
+<main>
+    <form action="/albums/create" method="post">
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Song Count</th>
+                <th>Album Length</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="album : ${albums}">
+                <td><img th:src="${album.imageURL}"/></td>
+                <td th:text="${album.title}"></td>
+                <td th:text="${album.artist}"></td>
+                <td th:text="${album.songCount}"></td>
+                <td><span th:text="${album.length / 60}"/>m<span th:text="${album.length % 60}"/>s</td>
+                <td><a th:href="'/albums/' + ${album.id}">Details</a></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td><input type="url" placeholder="Album Art URL" name="imageURL"/></td>
+                <td><input type="text" placeholder="Title" name="title"/></td>
+                <td><input type="text" placeholder="Artist" name="artist"/></td>
+                <td><input type="number" placeholder="Song Count" name="songCount"/></td>
+                <td><input type="number" placeholder="Length (in seconds)" name="length"/></td>
+                <td>
+                    <button type="submit">Create New</button>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+</main>
+<footer>
+
+</footer>
+</body>
+</html>

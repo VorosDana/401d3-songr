@@ -1,6 +1,6 @@
 package com.vorosdana.songr.database;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AlbumReposity  extends CrudRepository<Album, Long> {
+public interface AlbumReposity extends JpaRepository<Album, Long> {
 }

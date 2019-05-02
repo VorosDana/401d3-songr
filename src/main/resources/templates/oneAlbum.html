@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${album.title}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header>
+    <h1 th:text="${album.title}"/>
+</header>
+<main>
+    <section>
+
+        <img th:href="${album.imageURL}"/>
+
+        <ul>
+            <li th:text="'Artist: ' + ${album.artist}"/>
+            <li th:text="'Number of tracks: ' + ${album.songCount}"/>
+            <li th:text="'Length: ' + ${album.length / 60} + 'm' + ${album.length % 60} + 's'"/>
+        </ul>
+    </section>
+
+    <form th:action="'/albums/' + ${album.id} + '/song/add'" method="post">
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Track Number</th>
+                <th>Song Length</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="song : ${songs}">
+                <td th:text="${song.title}"></td>
+                <td th:text="${song.artist}"></td>
+                <td th:text="${song.trackNumber}"></td>
+                <td><span th:text="${song.length / 60}"/>m<span th:text="${song.length % 60}"/>s</td>
+                <td><a th:href="'/albums/' + ${album.id} + '/song/' + ${song.id}">Edit</a></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td><input type="text" placeholder="Title" name="title"/></td>
+                <td><input type="text" placeholder="Artist" name="artist"/></td>
+                <td><input type="number" placeholder="Track Number" name="trackNumber"/></td>
+                <td><input type="number" placeholder="Length (in seconds)" name="length"/></td>
+                <td>
+                    <button type="submit">Create New</button>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+</main>
+<footer>
+
+</footer>
+</body>
+</html>
